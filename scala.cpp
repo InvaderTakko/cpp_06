@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 15:21:17 by sruff             #+#    #+#             */
-/*   Updated: 2026/05/11 16:30:23 by sruff            ###   ########.fr       */
+/*   Updated: 2026/05/11 16:49:19 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &)
 }
 ScalarConverter::~ScalarConverter()
 {
+}
+
+static void format_and_print(char c, int32_t i, float f, double d, char typeInfo)
+{
+	// char
+
+	std::cout << "char: ";
+	if (std::isinf(f) || std::isnan(f)) //
+		std::cout << "impossible" << std::endl;
+	else if (i > 127 || i < 0)
+		std::cout << "impossible" << std::endl;
+	else if (c > 126 || c < 32)
+		std::cout << "none displayable" << std::endl;
+	
+	// int
+	std::cout << "int: ";
+	if ()
+	// float
+	// double
+	
 }
 
 void ScalarConverter::convert(const std::string &str)
