@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 15:21:17 by sruff             #+#    #+#             */
-/*   Updated: 2026/05/11 14:43:37 by sruff            ###   ########.fr       */
+/*   Updated: 2026/05/11 16:30:23 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,35 @@ void ScalarConverter::convert(const std::string &str)
 		d = std::strtod(str.c_str(), &end);
 		if (*end == 'f' && *(end + 1) == '\0')
 		{
+			if (d >std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+				throw std::out_of_range("float over/underflow")
 			f =  static_cast<float>(d);
 			std::cout << f << std::endl;
 			return ;
 		}
 		throw
+		{
+			std::invalid_argument("not a float")
+		}
+		catch (...) {}
 		
 	}
+	
+	try			//double
+	{
+		d = std::strtod(str.c_str(), &end);
+		if (*end == '\0')
+		{
+			std::cout <<  d << std::endl;
+			return ;
+		}
+		throw std::invalid_argument("not a double");	
+		
+	}
+	catch (...) {}
+	
+	std::cout << "char: impossible\n";
+	std::cout << "int: impossible\n";
+	std::cout << "float: impossible\n";
+	std::cout << "double: impossible\n";
 }
