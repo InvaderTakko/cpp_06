@@ -13,6 +13,9 @@ $(NAME): $(OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
+debug: CFLAGS += -g3 -O0 -fno-omit-frame-pointer -fsanitize=address,undefined -D_GLIBCXX_DEBUG
+debug: re
+
 clean:
 	rm -f $(OBJS)
 
