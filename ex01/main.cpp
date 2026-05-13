@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 18:23:11 by sruff             #+#    #+#             */
-/*   Updated: 2026/05/13 18:28:49 by sruff            ###   ########.fr       */
+/*   Updated: 2026/05/13 18:40:25 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(void)
 	std::cout << "OG values: id=" << data.id << ", name=" << data.name << ", value=" << data.value << std::endl;
 	raw = Serializer::serialize(&data);
 	std::cout << "serialized value (uintptr_t): " << raw  << std::endl;
+	std::cout << "accessing data through raw integer cast: " << reinterpret_cast<Data*>(raw)->name << std::endl;
 	std::cout << "serialized loopback check (hex): 0x" << std::hex << raw << std::dec << std::endl;
 	deserializedData = Serializer::deserialize(raw);
 	std::cout << "deserialized data address: " << deserializedData << std::endl;
@@ -53,5 +54,6 @@ int	main(void)
 		std::cout << "Yuuuuuuge success: NULL pointer didnt blow up the programm and deserialized to NULL." << std::endl;
 	else
 		std::cout << "Error: NULL pointer was not deserialized properly" << std::endl;
+
 	return (0);
 }
